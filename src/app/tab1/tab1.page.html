@@ -1,0 +1,51 @@
+
+<ion-content>
+  <div class="login-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="text-center">Bem-vindo</ion-card-title>
+        <ion-card-subtitle class="text-center">
+          Faça login para continuar
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form (submit)="login()">
+          
+          <ion-item>
+            <ion-label position="floating">E-mail</ion-label>
+            <ion-input
+              type="email"
+              [(ngModel)]="email"
+              required
+              name="email"
+            ></ion-input>
+          </ion-item>
+
+          
+          <ion-item>
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input
+              type="password"
+              [(ngModel)]="password"
+              required
+              name="password"
+            ></ion-input>
+          </ion-item>
+
+          <!-- Botão de Login -->
+          <ion-button expand="block" type="submit">Entrar</ion-button>
+        </form>
+
+        <!-- Link para criar conta -->
+        <div class="create-account">
+          <p>
+            Não tem uma conta?
+            <a href="#" (click)="register()">Cadastre-se</a>
+
+          </p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
