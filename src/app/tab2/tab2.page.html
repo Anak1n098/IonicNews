@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Conversor de Moedas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>De</ion-label>
+          <ion-select [(ngModel)]="baseCurrency" placeholder="Selecione">
+            <ion-select-option *ngFor="let currency of currencies" [value]="currency">
+              {{ currency }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Para</ion-label>
+          <ion-select [(ngModel)]="targetCurrency" placeholder="Selecione">
+            <ion-select-option *ngFor="let currency of currencies" [value]="currency">
+              {{ currency }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Valor</ion-label>
+          <ion-input [(ngModel)]="amount" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="convert()">Converter</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-card *ngIf="conversionResult">
+          <ion-card-header>
+            <ion-card-title>Resultado</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{ amount }} {{ baseCurrency }} = {{ conversionResult | number: '1.2-2' }} {{ targetCurrency }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    
+    <ion-row>
+      <ion-col>
+        <ion-card *ngIf="history.length > 0">
+          <ion-card-header>
+            <ion-card-title>Histórico de Conversões</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let record of history">
+                {{ record.amount }} {{ record.base }} → {{ record.result | number: '1.2-2' }} {{ record.target }}
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
